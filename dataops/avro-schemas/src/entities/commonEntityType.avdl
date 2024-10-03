@@ -1,0 +1,23 @@
+namespace entity;
+schema CommonEntityType;
+
+enum CommonEntityType {
+    /** Individuals, groups of people, nicknames, fictional characters */
+    PERSON,
+    /** A specific location, such as a country, city, lake, building, etc. */
+    LOCATION,
+    /** Large organizations, such as a government, company, religion, sports team, etc. */
+    ORGANIZATION,
+    /** A branded product */
+    COMMERCIAL_ITEM,
+    /** An event, such as a festival, concert, election, etc. */
+    EVENT,
+    /** A full date (for example, 11/25/2017), day (Tuesday), month (May), or time (8:30 a.m.) */
+    DATE,
+    /** A quantified amount, such as currency, percentages, numbers, bytes, etc. */
+    QUANTITY,
+    /** An official name given to any creation or creative work, such as movies, books, songs, etc. */
+    TITLE,
+    /** Entities that don't fit into any of the other entity categories */
+    OTHER
+}

@@ -1,0 +1,35 @@
+namespace entity;
+schema PhysicalAttributeEntityType;
+
+enum PhysicalAttributeEntityType {
+    /** Physical height of an entity, applicable to people, buildings, etc. */
+    HEIGHT,
+    /** Physical weight of an entity, applicable to people, objects, etc. */
+    WEIGHT,
+    /** Color of an entity, applicable to objects, items, etc. */
+    COLOR,
+    /** Size or dimension of an entity, such as a product, building, etc. */
+    SIZE,
+    /** Physical shape of an entity, applicable to objects, locations, etc. */
+    SHAPE,
+    /** Speed of an entity, applicable to people, vehicles, etc. */
+    SPEED,
+    /** Age of an entity, applicable to people, objects, etc. */
+    AGE,
+    /** Material or substance an entity is made of, applicable to objects, buildings, etc. */
+    MATERIAL,
+    /** Temperature, applicable to objects, locations, etc. */
+    TEMPERATURE,
+    /** Volume or capacity of an entity, applicable to objects or places */
+    VOLUME,
+    /** Distance related to a location or object, applicable to locations or objects */
+    DISTANCE,
+    /** Weight capacity or load, applicable to things like vehicles, buildings */
+    CAPACITY,
+    /** Durability or hardness of an object or material */
+    DURABILITY,
+    /** Texture of an object, surface, or material */
+    TEXTURE,
+    /** Any other physical attribute not covered by the other types */
+    OTHER_PHYSICAL_ATTRIBUTE
+}

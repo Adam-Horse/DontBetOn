@@ -1,0 +1,9 @@
+namespace crawl;
+schema HttpData;
+
+record HttpData {
+    string uri;
+    string http_version;
+    map<union {string, array<string>}> headers;
+    bytes? body;
+}

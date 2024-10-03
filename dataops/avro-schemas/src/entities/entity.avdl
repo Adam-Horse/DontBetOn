@@ -1,0 +1,17 @@
+namespace entity;
+schema Entity;
+
+import idl "commonEntityType.avdl";
+import idl "physicalAttributeEntityType.avdl";
+
+// @convert
+record Entity {
+    /** type of entity */
+    union {CommonEntityType, PhysicalAttributeEntityType} type;
+    /** Value associated with the entity */
+    string value;
+    /** Confidence score for the entity, 1 = 100%, .5 = 50%, etc. */
+    float? confidence;
+    /** Any key-value pairs that may be useful to understand or provide context */
+    map<string>? metadata;
+}

@@ -1,0 +1,29 @@
+namespace crawl;
+schema CrawlRequest;
+
+import idl "../http/httpRequestOptions.avdl";
+import idl "interactions/crawlMethod.avdl";
+
+// @convert
+record CrawlRequest {
+    /** UUID to correlate requests and responses
+    * used for tracking across topics. 
+    */
+    string correlation_id;
+    /** Time crawl was queued, unix timestamp in milliseconds */
+    long created_timestamp;
+    
+    /** URI to be crawled */
+    string uri;
+
+
+    /** Optional interaction method used to navigate to URI */
+    CrawlMethod? crawl_method;
+
+
+    /** Optional id of viewport to execute request */
+    string? viewport_id;
+
+    /** Optional request params to be sent to server */
+    HttpRequestOptions? options;
+}

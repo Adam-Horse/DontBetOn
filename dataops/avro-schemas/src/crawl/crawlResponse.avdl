@@ -1,0 +1,26 @@
+namespace crawl;
+schema CrawlResponse;
+
+import idl "crawlRequest.avdl";
+import idl "../http/httpRequest.avdl";
+import idl "../http/httpResponse.avdl";
+import idl "../entities/entity.avdl";
+
+// @convert
+record CrawlResponse {
+    /** Time crawl completed, unix timestamp in milliseconds */
+    long completed_timestamp;
+    /** Original crawl request */
+    CrawlRequest? jobRequest;
+
+    /** Final request sent to server */
+    HttpRequest sentRequest;
+    /** Response received from server */
+    HttpResponse response;
+
+    /** Optional, screenshot of the page */
+    bytes? screenshot;
+
+    /** Entities extracted from response */
+    union {null, array<entity.Entity>} entities;
+}

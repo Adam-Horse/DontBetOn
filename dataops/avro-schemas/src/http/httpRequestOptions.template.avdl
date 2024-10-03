@@ -1,0 +1,7 @@
+namespace crawl;
+schema HttpRequestOptions;
+
+record HttpRequestOptions { 
+    // @include {{ httpRequest.template.avdl }}
+
+}

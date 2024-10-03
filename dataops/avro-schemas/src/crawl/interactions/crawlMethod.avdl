@@ -1,0 +1,7 @@
+namespace crawl;
+schema CrawlMethod;
+
+enum CrawlMethod {
+    URL,
+    INTERACT
+} = URL;

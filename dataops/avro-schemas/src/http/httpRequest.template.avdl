@@ -1,0 +1,14 @@
+namespace crawl;
+schema HttpRequest;
+
+record HttpRequest {
+    /** HTTP method used in the request */
+    string http_method;
+
+    // @include {{ httpData.avdl }}
+}
+
+
+
+
+
