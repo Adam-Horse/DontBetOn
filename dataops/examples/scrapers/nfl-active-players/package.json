@@ -1,0 +1,21 @@
+{
+ "scripts": {
+  "test": "echo \"Error: no test specified\" && exit 1",
+  "start": "node dist/src/index.js",
+  "avro": "ts-node tools/generate-schema.ts",
+  "build": "tsc --build --verbose",
+  "conf": "tsc --showConfig"
+ },
+ "dependencies": {
+  "@kafkajs/confluent-schema-registry": "^3.3.0",
+  "@ulixee/hero-playground": "^2.0.0-alpha.29",
+  "kafkajs": "^2.2.4",
+  "robots-parser": "^3.0.1",
+  "uuid": "^10.0.0"
+ },
+ "devDependencies": {
+  "@ovotech/avro-ts-cli": "^3.6.0",
+  "@types/uuid": "^10.0.0",
+  "typescript": "^5.6.2"
+ }
+}
