@@ -1,0 +1,8 @@
+-c requirements.txt
+-c requirements-dev.txt
+
+mypy
+types-jsonschema
+sentry-sdk
+types-cachetools
+types-protobuf<4
