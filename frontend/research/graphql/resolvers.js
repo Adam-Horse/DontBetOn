@@ -1,33 +1,76 @@
-const players = [
-  {
-    id: '1',
-    name: 'Player One',
-    position: 'Quarterback',
-    team: { id: '1', name: 'Team A' },
-    traditionalStats: { gamesPlayed: 10, yards: 3000, touchdowns: 30, interceptions: 5 },
-    nonTraditionalMetrics: { fatigue: 2, weatherImpact: 1.5, offFieldIncidents: 0, coachDecisionsImpact: 3.2 }
-  },
-  // Add more player data here
-];
-
-const teams = [
-  {
-    id: '1',
-    name: 'Team A',
-    coach: { id: '1', name: 'Coach A', experience: 10 },
-    owner: { id: '1', name: 'Owner A', netWorth: 5000000 },
-    traditionalStats: { gamesPlayed: 16, yards: 5000, touchdowns: 50, interceptions: 15 },
-    nonTraditionalMetrics: { fatigue: 5, weatherImpact: 2.0, offFieldIncidents: 3, coachDecisionsImpact: 4.5 }
-  },
-  // Add more team data here
-];
+const { fetchPlayerProfiles } = require('./getPlayers'); // Import the function to fetch player profiles
 
 const resolvers = {
   Query: {
-    getPlayer: (_, { id }) => players.find(player => player.id === id),
-    getTeam: (_, { id }) => teams.find(team => team.id === id),
-    allPlayers: () => players,
-    allTeams: () => teams,
+    allPlayers: async () => {
+      try {
+        const players = await fetchPlayerProfiles();
+        return players.map(player => ({
+          id: player.PlayerID,
+          firstName: player.FirstName,
+          lastName: player.LastName,
+          fullName: player.Name,
+          shortName: player.ShortName,
+          position: player.Position,
+          team: player.Team || 'No Team',
+          status: player.Status,
+          height: player.Height,
+          weight: player.Weight,
+          birthDate: player.BirthDate,
+          college: player.College,
+          experience: player.Experience,
+          fantasyPosition: player.FantasyPosition,
+          active: player.Active,
+          positionCategory: player.PositionCategory,
+          age: player.Age,
+          usaTodayPlayerID: player.UsaTodayPlayerID,
+          usaTodayHeadshotUrl: player.UsaTodayHeadshotUrl,
+          usaTodayHeadshotNoBackgroundUrl: player.UsaTodayHeadshotNoBackgroundUrl,
+        }));
+      } catch (error) {
+        console.error('Error fetching player profiles:', error.message);
+        throw new Error('Failed to fetch player profiles');
+      }
+    },
+    
+    // Resolver for fetching a specific player by id
+    getPlayer: async (_, { id }) => {
+      try {
+        const players = await fetchPlayerProfiles(); // Fetch all player profiles
+        const player = players.find(player => player.PlayerID == id); // Find the specific player by ID
+
+        if (!player) {
+          throw new Error(`Player with id ${id} not found`);
+        }
+
+        // Return the specific player data
+        return {
+          id: player.PlayerID,
+          firstName: player.FirstName,
+          lastName: player.LastName,
+          fullName: player.Name,
+          shortName: player.ShortName,
+          position: player.Position,
+          team: player.Team || 'No Team',
+          status: player.Status,
+          height: player.Height,
+          weight: player.Weight,
+          birthDate: player.BirthDate,
+          college: player.College,
+          experience: player.Experience,
+          fantasyPosition: player.FantasyPosition,
+          active: player.Active,
+          positionCategory: player.PositionCategory,
+          age: player.Age,
+          usaTodayPlayerID: player.UsaTodayPlayerID,
+          usaTodayHeadshotUrl: player.UsaTodayHeadshotUrl,
+          usaTodayHeadshotNoBackgroundUrl: player.UsaTodayHeadshotNoBackgroundUrl,
+        };
+      } catch (error) {
+        console.error(`Error fetching player with id ${id}:`, error.message);
+        throw new Error('Failed to fetch player');
+      }
+    }
   }
 };
 

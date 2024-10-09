@@ -1,56 +1,33 @@
 const { gql } = require('apollo-server');
 
-// Define the GraphQL schema
+// Define your GraphQL types and queries
 const typeDefs = gql`
   type Player {
     id: ID!
-    name: String!
+    firstName: String!
+    lastName: String!
+    fullName: String!
+    shortName: String
     position: String!
-    team: Team!
-    traditionalStats: TraditionalStats
-    nonTraditionalMetrics: NonTraditionalMetrics
-  }
-
-  type Team {
-    id: ID!
-    name: String!
-    coach: Coach!
-    owner: Owner!
-    traditionalStats: TraditionalStats
-    nonTraditionalMetrics: NonTraditionalMetrics
-  }
-
-  type Coach {
-    id: ID!
-    name: String!
-    experience: Int!
-  }
-
-  type Owner {
-    id: ID!
-    name: String!
-    netWorth: Float!
-  }
-
-  type TraditionalStats {
-    gamesPlayed: Int!
-    yards: Float!
-    touchdowns: Int!
-    interceptions: Int!
-  }
-
-  type NonTraditionalMetrics {
-    fatigue: Int
-    weatherImpact: Float
-    offFieldIncidents: Int
-    coachDecisionsImpact: Float
+    team: String
+    status: String
+    height: String
+    weight: Int
+    birthDate: String
+    college: String
+    experience: Int
+    fantasyPosition: String
+    active: Boolean
+    positionCategory: String
+    age: Int
+    usaTodayPlayerID: Int
+    usaTodayHeadshotUrl: String
+    usaTodayHeadshotNoBackgroundUrl: String
   }
 
   type Query {
-    getPlayer(id: ID!): Player
-    getTeam(id: ID!): Team
     allPlayers: [Player!]!
-    allTeams: [Team!]!
+    getPlayer(id: ID!): Player  # Add a query to get a specific player by id
   }
 `;
 
